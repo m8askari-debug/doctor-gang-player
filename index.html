@@ -1,231 +1,590 @@
 
-<!doctype html>
+<!DOCTYPE html>
 <html lang="fa" dir="rtl">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="theme-color" content="#171715">
-<meta name="description" content="دکتر گنگ — سید علی بهبهانی | میکس و مستر مهدی عسکری | استودیو برندینگ پزشکی کیان">
+<meta name="description" content="دکتر گنگ — سید علی بهبهانی | استودیو برندینگ پزشکی کیان">
 <title>دکتر گنگ | استودیو برندینگ پزشکی کیان</title>
+
 <style>
-:root{color-scheme:dark;--gold:#d6b66c;--bright:#f4d993}
-*{box-sizing:border-box}
-body{margin:0;min-height:100vh;background:radial-gradient(ellipse at 50% 18%,#35332d,#222220 34%,#151514 76%);color:#f1eee6;font-family:Tahoma,"Segoe UI",Arial,sans-serif;display:flex;align-items:center;justify-content:center;padding:24px 16px 30px}
-.player{position:relative;width:min(100%,370px);padding:21px;border-radius:34px;background:linear-gradient(145deg,#41403bb8,#141413 35%,#191917);border:1px solid #ffffff0e;box-shadow:0 30px 80px #0009,inset 1px 1px 1px #ffffff12;overflow:hidden}
-.topbar{display:flex;align-items:center;justify-content:space-between;color:#a9a69d;font-size:10px;letter-spacing:1px;margin-bottom:18px;direction:ltr}
-.brandmark{font-size:9px;letter-spacing:1.5px;color:#d4c08d;font-weight:bold}
-.tiny-btn{border:0;background:transparent;color:#aaa79e;font-size:20px;cursor:pointer}
-.art-wrap{border-radius:23px;padding:8px;background:linear-gradient(145deg,#35342f,#10100f);box-shadow:0 14px 28px #0008}
-.cover{display:block;width:100%;aspect-ratio:1;object-fit:cover;border-radius:17px}
-.track-info{text-align:center;padding:21px 3px 0}
-.track-title{font-size:24px;font-weight:800;margin:0;color:#f5f0e4}
-.artist{margin-top:8px;font-size:13px;color:#c4bda9}
-.english{font-size:9px;letter-spacing:3px;color:#8e8878;margin-top:8px;direction:ltr}
-.timeline{margin-top:22px;direction:ltr}
-.range{width:100%;height:4px;appearance:none;background:#49463d;border-radius:99px;outline:none;cursor:pointer}
-.range::-webkit-slider-thumb{appearance:none;width:12px;height:12px;border-radius:50%;background:var(--bright);border:2px solid #29271f}
-.range::-moz-range-thumb{width:10px;height:10px;border-radius:50%;background:var(--bright);border:2px solid #29271f}
-.times{display:flex;justify-content:space-between;font-size:9px;color:#8d897e;margin-top:9px;font-variant-numeric:tabular-nums}
-.play-prompt{position:relative;display:flex;align-items:center;justify-content:center;gap:10px;margin:22px auto 0;padding:9px 18px 9px 12px;border:1px solid #e6c26f96;border-radius:999px;background:linear-gradient(135deg,#3b3322,#171613);color:var(--bright);font:700 12px Tahoma,Arial,sans-serif;cursor:pointer;box-shadow:0 0 22px #d6b66c33;animation:float 2.1s ease-in-out infinite;isolation:isolate}
-.play-prompt:before{content:"";position:absolute;inset:-5px;border:1px solid #e2c27466;border-radius:999px;z-index:-1;animation:pulse 2.1s ease-out infinite}
-.play-prompt:after{content:"";position:absolute;inset:0;border-radius:999px;background:linear-gradient(110deg,transparent 20%,#fff3 48%,transparent 70%);transform:translateX(-120%);animation:shine 3.2s ease-in-out infinite;pointer-events:none}
-.prompt-icon{display:grid;place-items:center;width:31px;height:31px;border-radius:50%;background:linear-gradient(145deg,#f7dfa0,#b68a36);color:#17140d;box-shadow:0 0 15px #e8c77570;flex:none}
-.control-disc{position:relative;width:218px;height:218px;max-width:78vw;max-height:78vw;margin:15px auto 0;border-radius:50%;background:radial-gradient(circle at 35% 23%,#292926,#191918 62%,#121211);border:1px solid #080808;box-shadow:0 12px 26px #0008,inset 0 1px 1px #ffffff0a;display:grid;grid-template-columns:1fr 1fr 1fr;grid-template-rows:48px 1fr 55px;align-items:center;justify-items:center;padding:13px 17px 11px;direction:ltr}
-.control-disc:before{content:"";position:absolute;inset:8px;border-radius:50%;border:1px solid #ffffff08;pointer-events:none}
-.control-disc:after{content:"";position:absolute;width:73px;height:73px;border-radius:50%;background:radial-gradient(circle at 35% 30%,#20201e,#111110);border:1px solid #ffffff08;left:50%;top:50%;transform:translate(-50%,-50%);pointer-events:none}
-.control{position:relative;z-index:2;border:0;background:transparent;color:#c9c5ba;display:grid;place-items:center;cursor:pointer;padding:8px}
-.shuffle{grid-column:2;grid-row:1;color:#b6a578}
-.previous{grid-column:1;grid-row:2}
-.next{grid-column:3;grid-row:2}
-.play{grid-column:2;grid-row:3;color:#f1e6c7}
-.playing .control-disc{box-shadow:0 12px 26px #0008,0 0 0 1px #d6b66c33}
-.signature{position:relative;display:block;isolation:isolate;overflow:hidden;margin:22px auto 0;padding:15px 12px;width:100%;border:1px solid #d6b66ca6;border-radius:16px;background:linear-gradient(110deg,#211d15,#302719 48%,#191713);text-align:center;text-decoration:none;color:inherit;box-shadow:0 0 10px #d6b66c26,0 0 24px #d6b66c19;animation:glow 2.8s ease-in-out infinite;cursor:pointer;transition:transform .2s}
-.signature:before,.signature:after{content:"✦";position:absolute;top:50%;transform:translateY(-50%);color:var(--bright);font-size:12px;text-shadow:0 0 8px #e8c775}
-.signature:before{right:12px}
-.signature:after{left:12px}
-.signature-shine{position:absolute;top:-50%;bottom:-50%;left:-55%;width:35%;pointer-events:none;background:linear-gradient(90deg,transparent,#fff1,rgba(255,239,190,.32),#fff1,transparent);transform:skewX(-22deg);animation:kianShine 3.6s ease-in-out infinite}
-.signature-fa,.signature-en{position:relative;z-index:1;display:block}
-.signature-fa{font-size:13px;font-weight:700;color:#f1d795;padding:0 18px;text-shadow:0 0 10px #e7c77d40}
-.signature-en{font-size:8px;color:#c4ad78;letter-spacing:2px;margin-top:7px;direction:ltr}
-.signature:active{transform:scale(.97)}
-.credits{display:flex;align-items:center;justify-content:center;gap:8px;margin-top:15px;color:#858176;font-size:10px}
-.dot{width:3px;height:3px;border-radius:50%;background:var(--gold)}
-.footer{font-size:8px;letter-spacing:2px;text-align:center;color:#5f5b52;margin-top:15px;direction:ltr}
-.notice{position:fixed;bottom:10px;left:12px;right:12px;text-align:center;font-size:10px;color:#aaa;pointer-events:none}
-@keyframes float{0%,100%{transform:translateY(0);box-shadow:0 0 18px #d6b66c2e}50%{transform:translateY(-3px);box-shadow:0 0 29px #d6b66c66}}
-@keyframes pulse{0%{transform:scale(1);opacity:.7}80%,100%{transform:scale(1.13);opacity:0}}
-@keyframes shine{0%,60%{transform:translateX(-120%)}85%,100%{transform:translateX(120%)}}
-@keyframes glow{0%,100%{box-shadow:0 0 8px #d6b66c1f,0 0 18px #d6b66c14}50%{box-shadow:0 0 14px #f4d9934d,0 0 30px #d6b66c33}}
-@keyframes kianShine{0%,15%{left:-55%}65%,100%{left:130%}}
-@media(max-width:360px){body{padding:12px}.player{padding:16px;border-radius:28px}.track-title{font-size:21px}.control-disc{width:198px;height:198px}.play-prompt{font-size:11px}}
-@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;transition:none!important}}
+:root {
+  color-scheme: dark;
+  --gold: #d6b66c;
+  --bright: #f4d993;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(ellipse at 50% 18%, #35332d, #222220 34%, #151514 76%);
+  color: #f1eee6;
+  font-family: Tahoma, "Segoe UI", Arial, sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 24px 16px 30px;
+}
+
+.player {
+  position: relative;
+  width: min(100%, 370px);
+  padding: 21px;
+  border-radius: 34px;
+  background: linear-gradient(145deg, #41403bb8, #141413 35%, #191917);
+  border: 1px solid #ffffff0e;
+  box-shadow: 0 30px 80px #0009, inset 1px 1px 1px #ffffff12;
+  overflow: hidden;
+}
+
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #a9a69d;
+  font-size: 10px;
+  letter-spacing: 1px;
+  margin-bottom: 18px;
+  direction: ltr;
+}
+
+.brandmark {
+  font-size: 9px;
+  letter-spacing: 1.5px;
+  color: #d4c08d;
+  font-weight: bold;
+}
+
+.tiny-btn {
+  border: 0;
+  background: transparent;
+  color: #aaa79e;
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.art-wrap {
+  border-radius: 23px;
+  padding: 8px;
+  background: linear-gradient(145deg, #35342f, #10100f);
+  box-shadow: 0 14px 28px #0008;
+}
+
+.cover {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 17px;
+}
+
+.track-info {
+  text-align: center;
+  padding: 21px 3px 0;
+}
+
+.track-title {
+  font-size: 24px;
+  font-weight: 800;
+  margin: 0;
+  color: #f5f0e4;
+}
+
+.artist {
+  margin-top: 8px;
+  font-size: 13px;
+  color: #c4bda9;
+}
+
+.english {
+  font-size: 9px;
+  letter-spacing: 3px;
+  color: #8e8878;
+  margin-top: 8px;
+  direction: ltr;
+}
+
+.timeline {
+  margin-top: 22px;
+  direction: ltr;
+}
+
+.range {
+  width: 100%;
+  height: 4px;
+  appearance: none;
+  background: #49463d;
+  border-radius: 99px;
+  outline: none;
+  cursor: pointer;
+}
+
+.range::-webkit-slider-thumb {
+  appearance: none;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--bright);
+  border: 2px solid #29271f;
+}
+
+.range::-moz-range-thumb {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--bright);
+  border: 2px solid #29271f;
+}
+
+.times {
+  display: flex;
+  justify-content: space-between;
+  font-size: 9px;
+  color: #8d897e;
+  margin-top: 9px;
+  font-variant-numeric: tabular-nums;
+}
+
+/* دایره کنترل */
+.control-disc {
+  position: relative;
+  width: 218px;
+  height: 218px;
+  max-width: 78vw;
+  max-height: 78vw;
+  margin: 24px auto 0;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 23%, #292926, #191918 62%, #121211);
+  border: 1px solid #080808;
+  box-shadow: 0 12px 26px #0008, inset 0 1px 1px #ffffff0a;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 48px 1fr 55px;
+  align-items: center;
+  justify-items: center;
+  padding: 13px 17px 11px;
+  direction: ltr;
+}
+
+.control-disc::before {
+  content: "";
+  position: absolute;
+  inset: 8px;
+  border-radius: 50%;
+  border: 1px solid #ffffff08;
+  pointer-events: none;
+}
+
+.control-disc::after {
+  content: "";
+  position: absolute;
+  width: 73px;
+  height: 73px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #20201e, #111110);
+  border: 1px solid #ffffff08;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.control {
+  position: relative;
+  z-index: 2;
+  border: 0;
+  background: transparent;
+  color: #c9c5ba;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+  padding: 8px;
+}
+
+.previous {
+  grid-column: 1;
+  grid-row: 2;
+}
+
+.next {
+  grid-column: 3;
+  grid-row: 2;
+}
+
+/* دکمه پلی طلایی، جایگزین شافل در بالای دایره */
+.control-disc .play {
+  grid-column: 2;
+  grid-row: 1;
+  width: 43px;
+  height: 43px;
+  padding: 0;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  color: #21190b;
+  background: linear-gradient(145deg, #ffe9a5, #c99b3c);
+  border: 1px solid #ffe8a0;
+  box-shadow: 0 0 10px #e7c36a99, 0 0 24px #d6b66c66, inset 0 1px 3px #fff9d8;
+  animation: goldenPlayPulse 1.8s ease-in-out infinite;
+}
+
+.control-disc .play::before {
+  content: "";
+  position: absolute;
+  inset: -7px;
+  border: 1px solid #e7c36a99;
+  border-radius: 50%;
+  animation: goldenPlayRing 1.8s ease-out infinite;
+  pointer-events: none;
+}
+
+.control-disc .play svg {
+  filter: drop-shadow(0 1px 1px #fff5);
+}
+
+.playing .control-disc {
+  box-shadow: 0 12px 26px #0008, 0 0 0 1px #d6b66c33;
+}
+
+@keyframes goldenPlayPulse {
+  0%, 100% {
+    transform: scale(1);
+    box-shadow: 0 0 10px #e7c36a99, 0 0 22px #d6b66c55;
+  }
+  50% {
+    transform: scale(1.09);
+    box-shadow: 0 0 17px #ffe39b, 0 0 35px #d6b66c99;
+  }
+}
+
+@keyframes goldenPlayRing {
+  0% { transform: scale(.85); opacity: .9; }
+  100% { transform: scale(1.65); opacity: 0; }
+}
+
+/* امضای درخشان استودیو کیان */
+.signature {
+  position: relative;
+  display: block;
+  isolation: isolate;
+  overflow: hidden;
+  margin: 25px auto 0;
+  padding: 15px 12px;
+  width: 100%;
+  border: 1px solid #d6b66ca6;
+  border-radius: 16px;
+  background: linear-gradient(110deg, #211d15, #302719 48%, #191713);
+  text-align: center;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 0 10px #d6b66c26, 0 0 24px #d6b66c19;
+  animation: glow 2.8s ease-in-out infinite;
+  cursor: pointer;
+  transition: transform .2s;
+}
+
+.signature::before,
+.signature::after {
+  content: "✦";
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  color: var(--bright);
+  font-size: 12px;
+  text-shadow: 0 0 8px #e8c775;
+}
+
+.signature::before { right: 12px; }
+.signature::after { left: 12px; }
+
+.signature-shine {
+  position: absolute;
+  top: -50%;
+  bottom: -50%;
+  left: -55%;
+  width: 35%;
+  pointer-events: none;
+  background: linear-gradient(90deg, transparent, #fff1, rgba(255,239,190,.32), #fff1, transparent);
+  transform: skewX(-22deg);
+  animation: kianShine 3.6s ease-in-out infinite;
+}
+
+.signature-fa,
+.signature-en {
+  position: relative;
+  z-index: 1;
+  display: block;
+}
+
+.signature-fa {
+  font-size: 13px;
+  font-weight: 700;
+  color: #f1d795;
+  padding: 0 18px;
+  text-shadow: 0 0 10px #e7c77d40;
+}
+
+.signature-en {
+  font-size: 8px;
+  color: #c4ad78;
+  letter-spacing: 2px;
+  margin-top: 7px;
+  direction: ltr;
+}
+
+.signature:active { transform: scale(.97); }
+
+.credits {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 15px;
+  color: #858176;
+  font-size: 10px;
+}
+
+.dot {
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: var(--gold);
+}
+
+.footer {
+  font-size: 8px;
+  letter-spacing: 2px;
+  text-align: center;
+  color: #5f5b52;
+  margin-top: 15px;
+  direction: ltr;
+}
+
+.notice {
+  position: fixed;
+  bottom: 10px;
+  left: 12px;
+  right: 12px;
+  text-align: center;
+  font-size: 10px;
+  color: #aaa;
+  pointer-events: none;
+}
+
+@keyframes glow {
+  0%, 100% { box-shadow: 0 0 8px #d6b66c1f, 0 0 18px #d6b66c14; }
+  50% { box-shadow: 0 0 14px #f4d9934d, 0 0 30px #d6b66c33; }
+}
+
+@keyframes kianShine {
+  0%, 15% { left: -55%; }
+  65%, 100% { left: 130%; }
+}
+
+@media (max-width: 360px) {
+  body { padding: 12px; }
+  .player { padding: 16px; border-radius: 28px; }
+  .track-title { font-size: 21px; }
+  .control-disc { width: 198px; height: 198px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .control-disc .play,
+  .control-disc .play::before,
+  .signature,
+  .signature-shine {
+    animation: none !important;
+  }
+}
 </style>
 </head>
+
 <body>
 <main class="player" id="player">
-<header class="topbar">
-<button class="tiny-btn" id="backButton" aria-label="شروع دوباره">‹</button>
-<span class="brandmark">STUDIO KIAN · EXCLUSIVE PLAYER</span>
-<button class="tiny-btn" id="moreButton" aria-label="اطلاعات آهنگ">⋮</button>
-</header>
 
-<div class="art-wrap"><img class="cover" src="cover.png" alt="کاور رسمی دکتر گنگ"></div>
+  <header class="topbar">
+    <button class="tiny-btn" id="backButton" aria-label="شروع دوباره">‹</button>
+    <span class="brandmark">STUDIO KIAN · EXCLUSIVE PLAYER</span>
+    <button class="tiny-btn" id="moreButton" aria-label="اطلاعات آهنگ">⋮</button>
+  </header>
 
-<section class="track-info">
-<h1 class="track-title">دکتر گنگ</h1>
-<div class="artist">سید علی بهبهانی</div>
-<div class="english">DOCTOR GANG</div>
-</section>
+  <div class="art-wrap">
+    <img class="cover" src="cover.png" alt="کاور رسمی دکتر گنگ">
+  </div>
 
-<section class="timeline">
-<input class="range" id="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="موقعیت پخش">
-<div class="times"><span id="elapsed">0:00</span><span id="duration">0:00</span></div>
-</section>
+  <section class="track-info">
+    <h1 class="track-title">دکتر گنگ</h1>
+    <div class="artist">سید علی بهبهانی</div>
+    <div class="english">DOCTOR GANG</div>
+  </section>
 
-<button class="play-prompt" id="playPrompt" aria-label="پخش موزیک دکتر گنگ">
-<span class="prompt-icon"><svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13L19 12z"/></svg></span>
-<span id="promptText">برای شنیدن موزیک لمس کن</span>
-</button>
+  <section class="timeline">
+    <input class="range" id="seek" type="range" min="0" max="100" value="0" step="0.1" aria-label="موقعیت پخش">
+    <div class="times">
+      <span id="elapsed">0:00</span>
+      <span id="duration">0:00</span>
+    </div>
+  </section>
 
-<section class="control-disc" aria-label="کنترل‌های پخش">
-<button class="control shuffle" id="shuffle" aria-label="حالت تصادفی" title="حالت تصادفی">
-<svg width="19" height="19" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m16 3 4 4-4 4"/><path d="M4 17h2.5c4.8 0 6.2-10 11-10H20"/><path d="m16 13 4 4-4 4"/><path d="M4 7h2.5c1.4 0 2.5 1 3.4 2.4M14 15.6c1-1.4 2-2.6 3.5-2.6H20"/></svg>
-</button>
-<button class="control previous" id="previous" aria-label="از ابتدا پخش کن"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M6 5h2v14H6zM19 6v12L9 12z"/></svg></button>
-<button class="control next" id="next" aria-label="شروع دوباره آهنگ"><svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor"><path d="M16 5h2v14h-2zM5 6v12l10-6z"/></svg></button>
-<button class="control play" id="play" aria-label="پخش آهنگ" title="پخش / توقف">
-<svg id="playIcon" width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5.5v13L19 12z"/></svg>
-</button>
-</section>
+  <section class="control-disc" aria-label="کنترل‌های پخش">
 
-<a class="signature" id="signatureLink" href="https://wa.me/989229065818" target="_blank" rel="noopener noreferrer" aria-label="درخواست مشاوره برندینگ پزشکی در واتساپ">
-<span class="signature-shine"></span>
-<span class="signature-fa">استودیو برندینگ پزشکی کیان</span>
-<span class="signature-en">MEDICAL BRANDING STUDIO</span>
-</a>
+    <!-- پلی متحرک در جایگاه بالایی دایره -->
+    <button class="control play" id="play" aria-label="پخش آهنگ" title="پخش / توقف">
+      <svg id="playIcon" width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M8 5.5v13L19 12z"/>
+      </svg>
+    </button>
 
-<div class="credits"><span>میکس و مستر: مهدی عسکری</span><span class="dot"></span><span>اهدایی از استودیو کیان</span></div>
-<div class="footer">A KIAN BRANDING STUDIO EXPERIENCE</div>
+    <button class="control previous" id="previous" aria-label="از ابتدا پخش کن" title="شروع دوباره">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M6 5h2v14H6zM19 6v12L9 12z"/>
+      </svg>
+    </button>
 
-<audio id="audio" preload="auto" playsinline src="track.mp3"></audio>
+    <button class="control next" id="next" aria-label="شروع دوباره آهنگ" title="شروع دوباره">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor">
+        <path d="M16 5h2v14h-2zM5 6v12l10-6z"/>
+      </svg>
+    </button>
+
+  </section>
+
+  <a class="signature" id="signatureLink" href="#" target="_blank" rel="noopener noreferrer" aria-label="درخواست مشاوره برندینگ پزشکی در واتساپ">
+    <span class="signature-shine"></span>
+    <span class="signature-fa">استودیو برندینگ پزشکی کیان</span>
+    <span class="signature-en">MEDICAL BRANDING STUDIO</span>
+  </a>
+
+  <div class="credits">
+    <span>میکس و مستر: مهدی عسکری</span>
+    <span class="dot"></span>
+    <span>اهدایی از استودیو کیان</span>
+  </div>
+
+  <div class="footer">A KIAN BRANDING STUDIO EXPERIENCE</div>
+
+  <audio id="audio" preload="metadata" playsinline src="track.mp3"></audio>
 </main>
+
 <div class="notice" id="notice" aria-live="polite"></div>
 
 <script>
-const audio=document.getElementById('audio');
-const player=document.getElementById('player');
-const playButton=document.getElementById('play');
-const playPrompt=document.getElementById('playPrompt');
-const promptText=document.getElementById('promptText');
-const playIcon=document.getElementById('playIcon');
-const seek=document.getElementById('seek');
-const elapsed=document.getElementById('elapsed');
-const duration=document.getElementById('duration');
-const shuffle=document.getElementById('shuffle');
-const notice=document.getElementById('notice');
-const signatureLink=document.getElementById('signatureLink');
+const audio = document.getElementById('audio');
+const player = document.getElementById('player');
+const playButton = document.getElementById('play');
+const playIcon = document.getElementById('playIcon');
+const seek = document.getElementById('seek');
+const elapsed = document.getElementById('elapsed');
+const duration = document.getElementById('duration');
+const notice = document.getElementById('notice');
+const signatureLink = document.getElementById('signatureLink');
 
 const consultationMessage =
-'سلام و درود 🌟\n' +
-'دکتر بهبهانی هستم، فوق‌تخصص روماتولوژی\n\n' +
-'برای مشاوره در زمینه برندینگ پزشکی و آشنایی با شرایط همکاری با استودیو کیان پیام می‌دم. ممنون می‌شم راهنمایی‌م کنید 🙏🏻';
+  'سلام و درود 🌟\n' +
+  'دکتر بهبهانی هستم، فوق‌تخصص روماتولوژی\n\n' +
+  'برای مشاوره در زمینه برندینگ پزشکی و آشنایی با شرایط همکاری با استودیو کیان پیام می‌دم. ممنون می‌شم راهنمایی‌م کنید 🙏🏻';
 
-signatureLink.href='https://wa.me/989229065818?text='+encodeURIComponent(consultationMessage);
+signatureLink.href =
+  'https://wa.me/989229065818?text=' +
+  encodeURIComponent(consultationMessage);
 
-let seeking=false;
-
-function fmt(t){
- if(!Number.isFinite(t))return '0:00';
- const m=Math.floor(t/60),s=Math.floor(t%60);
- return m+':'+String(s).padStart(2,'0');
+function formatTime(seconds) {
+  if (!Number.isFinite(seconds)) return '0:00';
+  const minutes = Math.floor(seconds / 60);
+  const secs = Math.floor(seconds % 60);
+  return minutes + ':' + String(secs).padStart(2, '0');
 }
 
-function setPlayState(on){
- player.classList.toggle('playing',on);
- playButton.setAttribute('aria-label',on?'توقف موقت':'پخش آهنگ');
- playIcon.innerHTML=on
- ?'<path d="M6.5 5h4v14h-4zM13.5 5h4v14h-4z"/>'
- :'<path d="M8 5.5v13L19 12z"/>';
- promptText.textContent=on?'در حال پخش · لمس برای توقف':'برای شنیدن موزیک لمس کن';
- playPrompt.setAttribute('aria-label',on?'توقف موقت موزیک':'پخش موزیک دکتر گنگ');
+function setPlayState(isPlaying) {
+  player.classList.toggle('playing', isPlaying);
+
+  playButton.setAttribute(
+    'aria-label',
+    isPlaying ? 'توقف موقت آهنگ' : 'پخش آهنگ'
+  );
+
+  playIcon.innerHTML = isPlaying
+    ? '<path d="M6.5 5h4v14h-4zM13.5 5h4v14h-4z"/>'
+    : '<path d="M8 5.5v13L19 12z"/>';
 }
 
-async function togglePlay(){
- try{
-  if(audio.paused){
-   await audio.play();
-   setPlayState(true);
-   notice.textContent='';
-  }else{
-   audio.pause();
-   setPlayState(false);
+async function togglePlay() {
+  try {
+    if (audio.paused) {
+      await audio.play();
+      notice.textContent = '';
+    } else {
+      audio.pause();
+    }
+  } catch (error) {
+    notice.textContent = 'برای پخش موزیک، دوباره روی دکمه پلی بزنید';
   }
- }catch(e){
-  notice.textContent='برای پخش، یک‌بار روی دکمه پلی بزنید';
- }
 }
 
-playButton.addEventListener('click',togglePlay);
-playPrompt.addEventListener('click',togglePlay);
-audio.addEventListener('play',()=>setPlayState(true));
-audio.addEventListener('pause',()=>setPlayState(false));
+playButton.addEventListener('click', togglePlay);
 
-audio.addEventListener('loadedmetadata',()=>{
- duration.textContent=fmt(audio.duration);
- seek.max=audio.duration||100;
+audio.addEventListener('play', () => setPlayState(true));
+audio.addEventListener('pause', () => setPlayState(false));
+
+audio.addEventListener('loadedmetadata', () => {
+  duration.textContent = formatTime(audio.duration);
+  seek.max = audio.duration || 100;
 });
 
-audio.addEventListener('timeupdate',()=>{
- elapsed.textContent=fmt(audio.currentTime);
- if(!seeking){
-  seek.value=audio.currentTime;
-  const pct=audio.duration?audio.currentTime/audio.duration*100:0;
-  seek.style.background=`linear-gradient(to right,var(--gold) 0%,var(--gold) ${pct}%,#49463d ${pct}%,#49463d 100%)`;
- }
+audio.addEventListener('timeupdate', () => {
+  elapsed.textContent = formatTime(audio.currentTime);
+
+  if (document.activeElement !== seek) {
+    seek.value = audio.currentTime;
+  }
+
+  const progress = audio.duration
+    ? (audio.currentTime / audio.duration) * 100
+    : 0;
+
+  seek.style.background =
+    `linear-gradient(to right, var(--gold) 0%, var(--gold) ${progress}%, #49463d ${progress}%, #49463d 100%)`;
 });
 
-seek.addEventListener('input',()=>{
- seeking=true;
- elapsed.textContent=fmt(Number(seek.value));
- const pct=Number(seek.value)/(Number(seek.max)||1)*100;
- seek.style.background=`linear-gradient(to right,var(--gold) 0%,var(--gold) ${pct}%,#49463d ${pct}%,#49463d 100%)`;
+seek.addEventListener('input', () => {
+  elapsed.textContent = formatTime(Number(seek.value));
 });
 
-seek.addEventListener('change',()=>{
- audio.currentTime=Number(seek.value);
- seeking=false;
+seek.addEventListener('change', () => {
+  audio.currentTime = Number(seek.value);
 });
 
-function restart(){
- audio.currentTime=0;
- if(audio.paused)togglePlay();
+function restartTrack() {
+  audio.currentTime = 0;
+
+  if (audio.paused) {
+    togglePlay();
+  }
 }
-document.getElementById('previous').addEventListener('click',restart);
-document.getElementById('next').addEventListener('click',restart);
-document.getElementById('backButton').addEventListener('click',restart);
 
-shuffle.addEventListener('click',()=>{
- const on=shuffle.getAttribute('aria-pressed')!=='true';
- shuffle.setAttribute('aria-pressed',String(on));
- shuffle.style.color=on?'var(--bright)':'#b6a578';
- notice.textContent=on?'این صفحه فقط یک آهنگ دارد؛ حالت تصادفی آهنگ دیگری برای انتخاب ندارد':'';
+document.getElementById('previous').addEventListener('click', restartTrack);
+document.getElementById('next').addEventListener('click', restartTrack);
+document.getElementById('backButton').addEventListener('click', restartTrack);
+
+document.getElementById('moreButton').addEventListener('click', () => {
+  notice.textContent = 'دکتر گنگ · سید علی بهبهانی · میکس و مستر مهدی عسکری';
 });
 
-document.getElementById('moreButton').addEventListener('click',()=>{
- notice.textContent='دکتر گنگ · سید علی بهبهانی · میکس و مستر مهدی عسکری';
-});
+audio.addEventListener('ended', () => setPlayState(false));
 
-audio.addEventListener('ended',()=>setPlayState(false));
-
-window.addEventListener('load',async()=>{
- try{
-  await audio.play();
-  setPlayState(true);
-  notice.textContent='';
- }catch(e){
-  setPlayState(false);
-  notice.textContent='برای شروع موزیک، یک‌بار روی دکمه پلی بزنید';
- }
+/* تلاش برای پخش خودکار؛ مرورگر ممکن است نیاز به لمس کاربر داشته باشد */
+window.addEventListener('load', async () => {
+  try {
+    await audio.play();
+    setPlayState(true);
+  } catch (error) {
+    setPlayState(false);
+    notice.textContent = 'برای شروع موزیک، دکمه پلی طلایی را لمس کنید';
+  }
 });
 </script>
 </body>
